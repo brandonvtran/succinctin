@@ -1,0 +1,141 @@
+
+Conversation opened. 1 unread message.
+
+Skip to content
+Using UC San Diego Mail with screen readers
+Search
+
+
+
+Mail
+COMPOSE
+Labels
+Inbox (2)
+Starred
+Sent Mail
+Drafts
+Internships
+More labels
+Hangouts
+
+
+
+
+  More
+1 of 3
+
+Print all In new window
+succinctin starter
+Inbox
+x
+
+Brandon Tran <bvt005@ucsd.edu>
+Attachments11:19 AM (3 minutes ago)
+
+to me
+
+
+--
+Brandon Tran
+Software Developer Intern, Perspectium
+(858) 717-6047 | bvt005@ucsd.edu
+Attachments area
+
+Click here to Reply or Forward
+Using 1.28 GB
+Program Policies
+Powered by Google
+Last account activity: 1 minute ago
+Open in 1 other location  Details
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SuccinctIn</title>
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Baloo|Lalezar|Righteous" rel="stylesheet">
+    <!-- CSS style to have left and right halves of the page -->
+    <style type="text/css">
+      #left { position: absolute; left: 0; top: 0; width: 50%; }
+      #right { position: absolute; right: 0; top: 0; width: 50%; }
+      textarea {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- left side contains functionalities to format text-->
+    <div id="left">
+      <h1 style="font-family: 'Archivo Black', sans-serif;">SuccinctIn</h1>
+
+      <h4>Once at a desired LinkedIn profile, copy the whole page and
+        paste the text into the text area below.</h4>
+
+      LinkedIn Profile:<br>
+      <!-- Text box to insert text to be formatted -->
+      <textarea id="textarea"></textarea>
+
+      <h4>Click the button to get the formatted LinkedIn profile on the
+          right side of this page.</h4>
+
+      <button type="button" onclick="myFunction()">Format</button>
+
+    </div>
+
+    <!-- right side contains the formatted text-->
+    <div id="right">
+      <p id="header"></p>
+      <p id="work"></p>
+    </div>
+
+    <script>
+    function myFunction() {
+        //get text from text area
+        var text = document.getElementById("textarea").value;
+        var textStr = text.toString();
+        var textArray = textStr.split("\n");
+        console.log(textArray);
+        var header;
+        var work;
+
+        //my profile case
+        if(textStr.indexOf("Edit Profile") != -1) {
+          var num;
+          for (var i in textArray) {
+            if (textArray[i] == "Edit Profile") {
+              num = parseInt(i); //must convert to integer bc currently string
+              header = textArray[num + 1] + ", " + textArray[num + 2];
+            }
+          }
+
+          work = textArray[49];
+        }
+        //profile with a background image case
+        else if (textStr.indexOf("Background Image") != -1) {
+          header = textArray[9] + ", " + textArray[13];
+        }
+        //profile without a background image case
+        else if(textStr.indexOf("Tap for popup settings") != -1) {
+          header = textArray[9] + ", " + textArray[12];
+        }
+        //not a profile case
+        else {
+          header = textStr;
+          work = "";
+        }
+
+        //print out formatted text
+        document.getElementById("header").innerHTML = header;
+        document.getElementById("work").innerHTML = work;
+    }
+    </script>
+
+  </body>
+</html>
+succinctin.txt
+Open with
+Displaying succinctin.txt.
