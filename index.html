@@ -5,13 +5,13 @@
     <link href="https://fonts.googleapis.com/css?family=Archivo+Black|Baloo|Lalezar|Righteous" rel="stylesheet">
     <!-- CSS style to have left and right halves of the page -->
     <style type="text/css">
-      #left { position: absolute; left: 0; top: 0; width: 50%; }
-      #right { position: absolute; right: 0; top: 0; width: 50%; }
+      #left { position: absolute; left: 0; top: 0; width: 50%; height: 100%; background-color: #984B43; }
+      #right { position: absolute; right: 0; top: 0; width: 50%; height: 100%; background-color: #EAC67A;}
       textarea {
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        width: 100%;
+        width: 95%;
         min-height: 500px;
       }
     </style>
@@ -133,6 +133,8 @@
         //not a profile case
         else {
           header = textStr;
+          work = "";
+          education = "";
         }
 
         //print out formatted text
