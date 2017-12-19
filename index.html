@@ -92,30 +92,35 @@
             }
           }
         }
-        //profile with a background image case
-        else if (textStr.indexOf("Background Image") != -1) {
+
+        //other users' profile
+        else if(textStr.indexOf("Highlights") != -1) {
+          var nameMatch = false; //flag that finds first match of identical names
+          var expMatch = false; //flag that finds first experience
+          var edMatch = false; //flag that finds first education
           for (var i in textArray) {
             //parse header
-            if (textArray[i] == "Background Image") {
+            if (textArray[i] === textArray[parseInt(i)+1] && nameMatch == false) {
               headerNum = parseInt(i); //must convert to integer bc currently string
-              header = textArray[headerNum + 2] + ", " + textArray[headerNum + 4];
+              header = textArray[headerNum] + ", " + textArray[headerNum + 3];
+              nameMatch = true;
             }
 
             //parse work experience
-            if (textArray[i] == "See all activity") {
-              topWork = parseInt(i) + 2; //must convert to integer bc currently string
+            if (textArray[i] == "Experience" && expMatch == false) {
+              topWork = parseInt(i) + 1; //must convert to integer bc currently string
+              expMatch = true;
             }
-            if ((textArray[i].indexOf("positions") != -1) && (textArray[parseInt(i) + 1] == "Education")) {
+            if (textArray[i] == "Education" && edMatch == false) {
               bottomWork = parseInt(i) - 1; //must convert to integer bc currently string
+              topEd = parseInt(i) + 1; //must convert to integer bc currently string
+              edMatch = true;
             }
             for (var w; topWork < bottomWork; topWork++) {
               work = work + textArray[topWork] + "</br>";
             }
 
             //parse education
-            if ((textArray[i].indexOf("positions") != -1) && (textArray[parseInt(i) + 1] == "Education")) {
-              topEd = parseInt(i) + 2; //must convert to integer bc currently string
-            }
             if (textArray[i] == "Volunteer Experience") {
               bottomEd = parseInt(i) - 1; //must convert to integer bc currently string
             }
@@ -124,10 +129,7 @@
             }
           }
         }
-        //profile without a background image case
-        else if(textStr.indexOf("Tap for popup settings") != -1) {
-          header = textArray[9] + ", " + textArray[12];
-        }
+
         //not a profile case
         else {
           header = textStr;
