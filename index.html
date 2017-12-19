@@ -50,19 +50,32 @@
         var textArray = textStr.split("\n");
         console.log(textArray);
         var header;
-        var work;
+        var work = "";
 
         //my profile case
         if(textStr.indexOf("Edit Profile") != -1) {
-          var num;
+          var headerNum;  //starting index of header
+          var topWork;    //starting index of work experience
+          var bottomWork; //ending index of work experience
+
           for (var i in textArray) {
+            //parse header
             if (textArray[i] == "Edit Profile") {
-              num = parseInt(i); //must convert to integer bc currently string
-              header = textArray[num + 1] + ", " + textArray[num + 2];
+              headerNum = parseInt(i); //must convert to integer bc currently string
+              header = textArray[headerNum + 1] + ", " + textArray[headerNum + 2];
+            }
+
+            //parse work experience
+            if (textArray[i] == "Add new position") {
+              topWork = parseInt(i) + 2; //must convert to integer bc currently string
+            }
+            if (textArray[i] == "Add new education") {
+              bottomWork = parseInt(i) - 1; //must convert to integer bc currently string
+            }
+            for (var w; topWork < bottomWork; topWork++) {
+              work = work + textArray[topWork];
             }
           }
-
-          work = textArray[49];
         }
         //profile with a background image case
         else if (textStr.indexOf("Background Image") != -1) {
