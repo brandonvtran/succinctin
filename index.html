@@ -94,7 +94,35 @@
         }
         //profile with a background image case
         else if (textStr.indexOf("Background Image") != -1) {
-          header = textArray[9] + ", " + textArray[13];
+          for (var i in textArray) {
+            //parse header
+            if (textArray[i] == "Background Image") {
+              headerNum = parseInt(i); //must convert to integer bc currently string
+              header = textArray[headerNum + 2] + ", " + textArray[headerNum + 4];
+            }
+
+            //parse work experience
+            if (textArray[i] == "See all activity") {
+              topWork = parseInt(i) + 2; //must convert to integer bc currently string
+            }
+            if ((textArray[i].indexOf("positions") != -1) && (textArray[parseInt(i) + 1] == "Education")) {
+              bottomWork = parseInt(i) - 1; //must convert to integer bc currently string
+            }
+            for (var w; topWork < bottomWork; topWork++) {
+              work = work + textArray[topWork] + "</br>";
+            }
+
+            //parse education
+            if ((textArray[i].indexOf("positions") != -1) && (textArray[parseInt(i) + 1] == "Education")) {
+              topEd = parseInt(i) + 2; //must convert to integer bc currently string
+            }
+            if (textArray[i] == "Volunteer Experience") {
+              bottomEd = parseInt(i) - 1; //must convert to integer bc currently string
+            }
+            for (var e; topEd < bottomEd; topEd++) {
+              education = education + textArray[topEd] + "</br>";
+            }
+          }
         }
         //profile without a background image case
         else if(textStr.indexOf("Tap for popup settings") != -1) {
@@ -103,7 +131,6 @@
         //not a profile case
         else {
           header = textStr;
-          work = "";
         }
 
         //print out formatted text
