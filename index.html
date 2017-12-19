@@ -40,6 +40,7 @@
     <div id="right">
       <p id="header"></p>
       <p id="work"></p>
+      <p id="education"></p>
     </div>
 
     <script>
@@ -50,13 +51,16 @@
         var textArray = textStr.split("\n");
         console.log(textArray);
         var header;
+        var headerNum;  //starting index of header
         var work = "";
+        var topWork;    //starting index of work experience
+        var bottomWork; //ending index of work experience
+        var education = "";
+        var topEd;      //starting index for education
+        var bottomEd;   //ending index for education
 
         //my profile case
         if(textStr.indexOf("Edit Profile") != -1) {
-          var headerNum;  //starting index of header
-          var topWork;    //starting index of work experience
-          var bottomWork; //ending index of work experience
 
           for (var i in textArray) {
             //parse header
@@ -74,6 +78,17 @@
             }
             for (var w; topWork < bottomWork; topWork++) {
               work = work + textArray[topWork];
+            }
+
+            //parse education
+            if (textArray[i] == "Add new education") {
+              topEd = parseInt(i) + 2; //must convert to integer bc currently string
+            }
+            if (textArray[i] == "Volunteer Experience") {
+              bottomEd = parseInt(i) - 1; //must convert to integer bc currently string
+            }
+            for (var e; topEd < bottomEd; topEd++) {
+              education = education + textArray[topEd];
             }
           }
         }
@@ -94,6 +109,7 @@
         //print out formatted text
         document.getElementById("header").innerHTML = header;
         document.getElementById("work").innerHTML = work;
+        document.getElementById("education").innerHTML = education;
     }
     </script>
 
