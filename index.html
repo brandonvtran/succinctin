@@ -52,10 +52,10 @@
         console.log(textArray);
         var header;
         var headerNum;  //starting index of header
-        var work = "";
+        var work = "<b>Work Experience</b></br>";
         var topWork;    //starting index of work experience
         var bottomWork; //ending index of work experience
-        var education = "";
+        var education = "<b>Education</b></br>";
         var topEd;      //starting index for education
         var bottomEd;   //ending index for education
 
@@ -102,7 +102,7 @@
             //parse header
             if (textArray[i] === textArray[parseInt(i)+1] && nameMatch == false) {
               headerNum = parseInt(i); //must convert to integer bc currently string
-              header = textArray[headerNum] + ", " + textArray[headerNum + 3];
+              header = "<b>" + textArray[headerNum] + ", " + textArray[headerNum + 3] + "</b>";
               nameMatch = true;
             }
 
